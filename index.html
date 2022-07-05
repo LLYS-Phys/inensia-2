@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var textField
+            function checkInput(){
+                textField = document.getElementsByTagName("input")[0].value
+                let result = textField.replace(/\s/g, '');
+
+                let reverseResult = ""
+                for (let i = result.length - 1; i >= 0; i--) {
+                    reverseResult += result[i];
+                }
+
+                if (textField == ""){
+                    document.getElementById("status").innerHTML = "You need to enter a word"
+                }
+                else{
+                    if (result === reverseResult){
+                        document.getElementById("status").innerHTML = "The word you entered is a palindrome"
+                    }
+                    else{
+                        document.getElementById("status").innerHTML = "The word you entered is not a palindrome"
+                    }
+                }
+            }
+
+            numbers = [33, 103, 3, 726, 200, 984, 198, 764, 9]
+            sorterNumbers = []
+            for (x=0; x<9; x++){
+                let min = Math.min(...numbers)
+                let indexMin = numbers.indexOf(min)
+                sorterNumbers.push(min)
+                numbers.splice(indexMin, 1)
+            }
+            function displayNumbers(){
+                document.getElementById("numbersResult").innerHTML = sorterNumbers
+            }
+        </script>
+    </head>
+    <body onload="displayNumbers()">
+        <h1>Status: <span id="status"></span></h1>
+        <input type="text" name="input">
+        <button type="button" onclick="checkInput()">Check</button>
+
+        <h2>Sorted numbers: <span id="numbersResult"></span></h2>
+    </body>
+</html>
